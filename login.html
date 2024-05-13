@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>log in</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="icon" href="logo_top.png" type="image/png" sizes="16x16">
+</head>
+<body>
+
+<div class="flip-card">
+    <div class="registration-form">
+        <div class="log-in-form">
+
+           <h1>log in</h1>
+  <form>
+    <input type="email" class="longinput" name="email" autocomplete="complete" placeholder="your email" required>
+    <input type="password" class="longinput" name="password" placeholder="password" required>
+       <div class="button-container">
+    <button class="button">log in</button>
+           </div>
+  </form>
+    <p>i dont have an account <b onclick="flipCard() " class="flip">sign up</b></p>
+    <button class="longinput google" ><img src="google-logo.png" id="google-logo" style="width:2em; height:2em;">continue with google</button>
+        </div>
+        <div class="sign-up-form">
+            <h1>sign up</h1>
+    <form id="signup-form">
+      <input type="email" class="longinput" name="email" autocomplete="complete" placeholder="your email" required>
+      <div class="shortinput-container">
+        <input type="text" class="shortinput" name="firstName" autocomplete="complete" placeholder="first name" required>
+         <input type="text" class="shortinput" name="lastName" autocomplete="complete" placeholder="last name"required>
+      </div>
+      <input type="text" class="longinput" name="username" autocomplete="complete" placeholder="username" required>
+       <div class="shortinput-container">
+        <input type="password" class="shortinput" id="password" name="password" placeholder="password" required>
+         <input type="password" class="shortinput" id="confirmPassword" name="confirmPassword" placeholder="confirm password" required>
+      </div>
+        <span id="message" style="color: red;"></span>
+        <span id="lengthMessage" style="color: red;"></span>
+        <div class="check">
+            <input type="checkbox" class="checkbox" id="check-box">
+      <label for="check-box">signup with company code</label>
+        </div>
+      <input type="text" class="longinput hidden" id="company-code" name="companyCode" autocomplete="none" placeholder="your company code" minlength="10" maxlength="10">
+        <div class="button-container">
+      <button class="button">sign up</button>
+            </div>
+    </form>
+            <p>i have already an account <b onclick="flipCard()" class="flip">log in</b></p>
+    <button class="longinput google" ><img src="google-logo.png" id="google-logo" style="width:2em; height:2em;">continue with google</button>
+                    </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+<script>
+  function flipCard() {
+    var card = document.querySelector('.flip-card');
+    card.classList.toggle('flipped');
+}
+    const checkbox = document.getElementById('check-box');
+  const inputContainer = document.getElementById('company-code');
+
+  checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+      inputContainer.classList.remove('hidden');
+      inputContainer.required = this.checked;
+    } else {
+      inputContainer.classList.add('hidden');
+    }
+  });
+
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+            var password = document.getElementById("password").value;
+           var confirmPassword = document.getElementById("confirmPassword").value;
+    if (password !== confirmPassword) {
+                document.getElementById("message").textContent = "Passwords do not match";
+                event.preventDefault();
+                document.getElementById("lengthMessage").textContent = "";
+
+            }
+
+            else {
+             if (password.length < 8) {
+             document.getElementById("message").textContent = "";
+                document.getElementById("lengthMessage").textContent = "Password should be at least 8 characters long";
+                event.preventDefault();
+            }
+            else{
+                event.target.submit();
+                }
+            }
+        });
+
+
+</script>
+
+</body>
+</html>
